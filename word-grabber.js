@@ -2,6 +2,8 @@ const GTRANS_URL = "#";
 
 function getTranslationData(){
 	//JSON grabber
+}
+
 	function getData(searchTerm, callback) {
   const settings = {
     url: GTRANS_URL,
