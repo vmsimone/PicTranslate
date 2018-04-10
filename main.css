@@ -1,0 +1,11 @@
+img {
+  max-width: 100px;
+}
+
+.visual-aid img {
+  max-width: 500px;
+}
+
+ul {
+  list-style-type: none;
+}

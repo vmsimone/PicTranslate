@@ -1,32 +1,38 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title>Image Translate</title>
+	<meta charset="utf-8">
+	<title>Multilingual Pictionary</title>
+	 <link href="main.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<noscript>JavaScript is required for this page.</noscript>
-	<p>Select a language:</p>
-	<p>Translate from...</p>
-	<ul>
-		<p>list of languages here</p>
-		<li>
-			<img src="#" alt="Britsh Flag" / >
-			<button>English</button>
-		</li>
-	</ul>
-	<p>to...</p>
-	<ul>
-		<p>list of languages here</p>
-		<li><button>English</button></li>
-	</ul>
+	<noscript>JavaScript is required for this page.</noscript>
 
-	<main>
+	<h2>Select a language:</h2>
+	<p>Translate from...</p>
+	<form action="#" class="lang-picker">
+		<input type="radio" name="user-language" value="en"> English
+		<input type="radio" name="user-language" value="es"> Spanish
+		<input type="radio" name="user-language" value="fr"> French
+	</form>
+
+	<p>to...</p>
+	<form action="#" class="lang-picker">
+		<input type="radio" name="foreign-language" value="en"> English
+		<input type="radio" name="foreign-language" value="es"> Spanish
+		<input type="radio" name="foreign-language" value="fr"> French
+	</form>
+
+	<main role="main">
 
 	<form action="#" name="trans-form" class="js-srch">
 		<label for="query"></label>
 		<input type="text" class="js-input" placeholder="e.g. 'Apple'">
 		<button type="submit">Search</button>
 	</form>
+	<br>
+	<div class="word-place">Text should post here</div>
+	<br>
 	<div class="image-place">Images should post here</div>
 	</main>
 
