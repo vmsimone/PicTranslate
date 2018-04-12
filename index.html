@@ -10,25 +10,65 @@
 
 	<h2>Select a language:</h2>
 	<p>Translate from...</p>
-	<form action="#" class="lang-picker">
-		<input type="radio" name="user-language" value="en"> English
-		<input type="radio" name="user-language" value="es"> Spanish
-		<input type="radio" name="user-language" value="fr"> French
+	<form class="lang-picker">
+	
+		<label for="English_ul">
+			<input type="radio" name="user-language" value="en"  id="English_ul"/> 
+			<img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/
+			Flag_of_the_United_Kingdom.svg/1200px-Flag_of_the_United_Kingdom.svg.png" 
+			alt="English" title="English">
+		</label>
+		
+		<label for="Spanish_ul">
+			<input type="radio" name="user-language" value="es" id="Spanish_ul" /> 
+			<img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/9a/
+			Flag_of_Spain.svg/750px-Flag_of_Spain.svg.png" 
+			alt="Spanish" title="Spanish">
+		</label>
+		
+		<label for="French_ul">
+			<input type="radio" name="user-language" value="fr" id="French_ul" /> 
+			<img src="https://upload.wikimedia.org/wikipedia/en/thumb/c/c3/
+			Flag_of_France.svg/900px-Flag_of_France.svg.png" 
+			alt="French" title="French">
+		</label>
+		
 	</form>
 
 	<p>to...</p>
 	<form action="#" class="lang-picker">
-		<input type="radio" name="foreign-language" value="en"> English
-		<input type="radio" name="foreign-language" value="es"> Spanish
-		<input type="radio" name="foreign-language" value="fr"> French
+		
+		<label for="English_fl">
+			<input type="radio" name="foreign-language" value="en"  id="English_fl"/> 
+			<img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/
+			Flag_of_the_United_Kingdom.svg/1200px-Flag_of_the_United_Kingdom.svg.png" 
+			alt="English" title="English">
+		</label>
+		
+		<label for="Spanish_fl">
+			<input type="radio" name="foreign-language" value="es" id="Spanish_fl" /> 
+			<img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/9a/
+			Flag_of_Spain.svg/750px-Flag_of_Spain.svg.png" 
+			alt="Spanish" title="Spanish">
+		</label>
+		
+		<label for="French_fl">
+			<input type="radio" name="foreign-language" value="fr" id="French_fl" /> 
+			<img src="https://upload.wikimedia.org/wikipedia/en/thumb/c/c3/
+			Flag_of_France.svg/900px-Flag_of_France.svg.png" 
+			alt="French" title="French">
+		
+		</label>
 	</form>
+
+	<br>
 
 	<main role="main">
 
 	<form action="#" name="trans-form" class="js-srch">
 		<label for="query"></label>
 		<input type="text" class="js-input" placeholder="e.g. 'Apple'">
-		<button type="submit">Search</button>
+		<button type="submit">Translate!</button>
 	</form>
 	<br>
 	<div class="word-place">Text should post here</div>

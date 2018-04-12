@@ -1,3 +1,29 @@
+body {
+	text-align: center;
+	font-family: sans-serif;
+	background: #66CCFF;
+	color: #000099;
+}
+
+.lang-picker img {
+	height: 50px;
+	width: 85px
+}
+
+.lang-picker label > input {
+	z-index: -1;
+	position: absolute;
+}
+
+.lang-picker label > input + img {
+	cursor: pointer;
+	border: 2px solid transparent;
+}
+
+.lang-picker label > input:checked + img {
+	border: 2px solid red;
+}
+
 img {
   max-width: 100px;
 }
