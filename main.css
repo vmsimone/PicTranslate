@@ -5,40 +5,44 @@ body {
 	color: #000099;
 }
 
-.lang-picker img {
-	
+.container form {
+	width: 265px;
 }
 
-@media only screen and (min-width: 640px) {
+main {
+	position: absolute;
+	top: 50%;
+	max-width: 33%;
+	left: 33%;
+}
 
-	.lang-picker img {
-		height: 50px;
-		width: 85px
-	}
+.lang-picker img {
+	height: 50px;
+	width: 85px
+}
 
-	.lang-picker label > input {
-		z-index: -1;
-		position: absolute;
-	}
+.lang-picker label > input {
+	z-index: -1;
+	position: absolute;
+}
 
-	.lang-picker label > input + img {
-		cursor: pointer;
-		border: 2px solid transparent;
-	}
+.lang-picker label > input + img {
+	cursor: pointer;
+	border: 2px solid transparent;
+}
 
-	.lang-picker label > input:checked + img {
-		border: 2px solid red;
-	}
+.lang-picker label > input:checked + img {
+	border: 2px solid #aa0000;
+}
 
-	img {
-	  max-width: 100px;
-	}
+img {
+  max-width: 100px;
+}
 
-	.visual-aid img {
-	  max-width: 500px;
-	}
+.visual-aid img {
+  max-width: 500px;
+}
 
-	ul {
-	  list-style-type: none;
-	}
+ul {
+  list-style-type: none;
 }

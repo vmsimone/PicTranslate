@@ -28,5 +28,4 @@ function langSelector(q){
 	getImageData(q, findImages, userLang);
 }
 
-$('.lang-picker').slick();
 $(readySearch);

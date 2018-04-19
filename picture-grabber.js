@@ -15,7 +15,7 @@ function getImageData(searchTerm, callbackFunc, countryPref){
     url: GIMAGE_SRCH,
     data: {
 		'key': `${KEY}`,
-		'num': '3',
+		'num': '10',
 		'defaultToImageSearch': true,
 		'gl': countryPref,
 		'cx': `${SEARCH_ID}`,
@@ -29,23 +29,20 @@ function getImageData(searchTerm, callbackFunc, countryPref){
 	$.ajax(settings);
 }
 
-function findImages(data) {
-	//get the pics
-	console.log('findImages ran');
-	console.log(data);
-	let imgAlt = data.items[0].title;
-	let imgSrc = data.items[0].pagemap.cse_image[0].src;
-	//temporary solution
-	if (imgSrc === undefined) {
-		 imgSrc = data.items[1].pagemap.cse_image[0].src;
+function findImgSrc(array) {
+	for (i=0; i < array.length; i++) {
+		imgSrc = array[i].pagemap.cse_image[0].src;
+		if (imgSrc !== undefined) {
+			return imgSrc;
+		}
 	}
-	//let imgSrc = srcExtractor(gLink);
-	console.log(imgSrc);
-	postImages(imgAlt, imgSrc);
 }
 
 function postImages(alt, src) {
 	//post the pics
+	if (src === undefined) {
+		src = "https://www.absolutefencinggear.com/shopping/images/Not_available.jpg";
+	}
 	console.log('images posting');
 	let pictureResult = `
 		<div class="visual-aid">
@@ -55,6 +52,19 @@ function postImages(alt, src) {
 		</div>
 		`;
 	$('.image-place').append(pictureResult);
+}
+
+function findImages(data) {
+	//get the pics
+	console.log('findImages ran');
+	console.log(data);
+	let imgAlt = data.items[0].title;
+	let imgSrc = undefined;
+	imgSrc = findImgSrc(data.items);
+	
+	//let imgSrc = srcExtractor(gLink);
+	console.log(imgSrc);
+	postImages(imgAlt, imgSrc);
 }
 
 function checkWorking(data) {
