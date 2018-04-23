@@ -6,8 +6,8 @@ body {
 }
 
 .container form {
-	width: 265px;
-	margin: 0 auto;	
+	width: 310px;
+	margin: 0 auto;
 }
 
 .container p {
@@ -22,8 +22,8 @@ main {
 }
 
 .lang-picker img {
-	height: 50px;
-	width: 85px
+	height: 70px;
+	width: 100px
 }
 
 .lang-picker label > input {
@@ -64,5 +64,5 @@ ul {
 }
 
 @media only screen and (min-width: 640px) {
-	
+
 }
