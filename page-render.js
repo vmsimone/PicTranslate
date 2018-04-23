@@ -23,6 +23,7 @@ function readySearch() {
 function readyApp() {
   $('#start-btn').on('click', function(){
     loadMain();
+    changePage('main');
   });
 }
 
@@ -40,30 +41,23 @@ function langSelector(q){
 	let userLang = document.querySelector('input[name="user-language"]:checked').value;
 	let foreignLang = document.querySelector('input[name="foreign-language"]:checked').value;
 
-  changePage();
-	getTranslationData(q, sortTranslationData, userLang, foreignLang);
+  getTranslationData(q, sortTranslationData, userLang, foreignLang);
 	userLang = useCountryCode(userLang);
 	console.log(userLang);
 	getImageData(q, findImages, userLang);
 }
 
-function changePage() {
-  switch(ACTIVE_PAGE) {
+function changePage(nextPage) {
+  console.log('Page changed');
+  switch(nextPage) {
     case "main":
-      $('input[name="user-language"]').on('change', function(){
-        loadSecondLang();
-      });
-      ACTIVE_PAGE = PAGES[1];
+
       break;
-    case "second":
-      $('input[name="foreign-language"]').on('change', function(){
-        loadForm();
-      });
-      ACTIVE_PAGE = PAGES[2];
+    case "secondLang":
+
       break;
     case "transForm":
       readySearch();
-      ACTIVE_PAGE = PAGES[3];
       break;
     case "results":
       loadTranslationPage();
@@ -122,7 +116,9 @@ function loadMain() {
     		<p></p>
     	</div>
   `);
-  changePage();
+  $('input[name="user-language"]').on('change', function(){
+    loadSecondLang();
+  });
 }
 
 //can use boolean argument for whether or not user is on mobile device
@@ -175,7 +171,9 @@ function loadSecondLang() {
 
     <br>
     `);
-    changePage();
+    $('input[name="foreign-language"]').on('change', function(){
+      loadForm();
+    });
 }
 
 function loadForm() {
@@ -194,7 +192,7 @@ function loadForm() {
     <br>
     </div>
     `);
-    changePage();
+    changePage("results");
 }
 
 function loadTranslationPage() {
