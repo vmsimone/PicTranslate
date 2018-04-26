@@ -1,5 +1,5 @@
-const PAGES = ['main', 'second', 'transForm', 'results']
-let ACTIVE_PAGE = PAGES[0];
+let USER_LANG;
+let FOREIGN_LANG;
 
 function clearSearch() {
   $('.image-place-original').html('');
@@ -13,21 +13,17 @@ function readySearch() {
     event.preventDefault();
     console.log('form was submitted');
     const input = $(event.currentTarget).find('.js-input');
+    console.log(input);
     const query = input.val();
-    input.val('');
+    console.log(query);
     langSelector(query);
+    input.val('');
     clearSearch();
   });
 }
 
 function readyApp() {
-  $('#start-btn').on('click', function(){
-    loadMain();
-  });
-}
-
-function readyReset() {
-  $('#js-reset').on('click', function() {
+  $('#start-btn').on('click', function() {
     loadMain();
   });
 }
@@ -43,13 +39,14 @@ function useCountryCode(langCode) {
 function langSelector(q){
 	//have this function run both getData functions
 	//each needs new arguments to account for the language(s)
-	let userLang = document.querySelector('input[name="user-language"]:checked').value;
-	let foreignLang = document.querySelector('input[name="foreign-language"]:checked').value;
+	let USER_LANG = document.querySelector('input[name="user-language"]:checked').value;
+	let FOREIGN_LANG = document.querySelector('input[name="foreign-language"]:checked').value;
 
-  getTranslationData(q, sortTranslationData, userLang, foreignLang);
-	userLang = useCountryCode(userLang);
-	console.log(userLang);
-	getImageData(q, findImages, userLang);
+  getTranslationData(q, sortTranslationData, USER_LANG, FOREIGN_LANG);
+	USER_LANG = useCountryCode(USER_LANG);
+	getImageData(q, findImages, USER_LANG);
+
+  loadTranslationPage();
 }
 
 function loadMain() {
@@ -103,9 +100,7 @@ function loadMain() {
     		<p></p>
     	</div>
   `);
-  $('input[name="user-language"]').on('change', function(){
-    loadSecondLang();
-  });
+  $('input[name="user-language"]').on('change', loadSecondLang);
 }
 
 //can use boolean argument for whether or not user is on mobile device
@@ -158,9 +153,8 @@ function loadSecondLang() {
 
     <br>
     `);
-    $('input[name="foreign-language"]').on('change', function(){
-      loadForm();
-    });
+  $('input[name="user-language"]').off('change', loadSecondLang);
+  $('input[name="foreign-language"]').on('change', loadForm);
 }
 
 function loadForm() {
@@ -177,8 +171,11 @@ function loadForm() {
         <button type="submit">Translate!</button>
       </form>
       <br>
+
     </div>
-  `);
+    `);
+  $('input[name="foreign-language"]').off('change', loadForm);
+  readySearch();
 }
 
 function loadTranslationPage() {
