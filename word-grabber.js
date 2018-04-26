@@ -1,5 +1,10 @@
 const GTRANS_URL = "https://translate.googleapis.com/translate_a/single?";
 
+function foreignSearch(translatedQuery) {
+	let foreignLang = document.querySelector('input[name="foreign-language"]:checked').value;
+	getImageData(translatedQuery, findImages, foreignLang);
+}
+
 function sortTranslationData(data){
 	console.log(data);
 	let userWord = data[0][0][1];
@@ -8,9 +13,9 @@ function sortTranslationData(data){
 	$('.word-place').append(`
 		<div class="col-5">
 			<h3>${userWord}</h3>
-		</div> 
+		</div>
 		<div class="col-2">
-			<p>translates to</p> 
+			<p>translates to</p>
 		</div>
 		<div class="col-5">
 			<h3>${translation}</h3>
@@ -29,7 +34,7 @@ function getTranslationData(searchTerm, callback, sourceLang, targetLang) {
 		'dt' : 't',
 		'q' : searchTerm
 		},
-		
+
 		dataType: 'json',
 		type: 'GET',
 		success: callback
