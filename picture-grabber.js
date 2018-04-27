@@ -1,21 +1,17 @@
 const KEY = "AIzaSyD8zWKL40wAK4H694xGTGB7OyoluvILxV4";
 const SEARCH_ID = "016997435643568742287:j2dl6nqzf9c";
-
 const GIMAGE_SRCH = "https://www.googleapis.com/customsearch/v1";
 
-//may need global for country code
-
-/*for testing https://www.googleapis.com/customsearch/v1?
-key=AIzaSyD8zWKL40wAK4H694xGTGB7OyoluvILxV4&cx=016997435643568742287:j2dl6nqzf9c
-&q=animals&callback=SearchCompleted*/
-
+//easiest way to post images in separate places. Used exclusively in postImages function
+let firstImagePost = true;
 
 function getImageData(searchTerm, callbackFunc, countryPref){
+	console.log(countryPref);
 	const settings = {
     url: GIMAGE_SRCH,
     data: {
 		'key': `${KEY}`,
-		'num': '3',
+		'num': '10',
 		'defaultToImageSearch': true,
 		'gl': countryPref,
 		'cx': `${SEARCH_ID}`,
@@ -29,23 +25,11 @@ function getImageData(searchTerm, callbackFunc, countryPref){
 	$.ajax(settings);
 }
 
-function findImages(data) {
-	//get the pics
-	console.log('findImages ran');
-	console.log(data);
-	let imgAlt = data.items[0].title;
-	let imgSrc = data.items[0].pagemap.cse_image[0].src;
-	//temporary solution
-	if (imgSrc === undefined) {
-		 imgSrc = data.items[1].pagemap.cse_image[0].src;
-	}
-	//let imgSrc = srcExtractor(gLink);
-	console.log(imgSrc);
-	postImages(imgAlt, imgSrc);
-}
-
 function postImages(alt, src) {
 	//post the pics
+	if (src === undefined) {
+		src = "https://www.absolutefencinggear.com/shopping/images/Not_available.jpg";
+	}
 	console.log('images posting');
 	let pictureResult = `
 		<div class="visual-aid">
@@ -54,10 +38,33 @@ function postImages(alt, src) {
 			</a>
 		</div>
 		`;
-	$('.image-place').append(pictureResult);
+	if (firstImagePost === true) {
+		currentImgLocation = "original";
+	} else {
+		currentImgLocation = "new";
+	}
+	$(`.image-place-${currentImgLocation}`).append(pictureResult);
+	firstImagePost = !firstImagePost;
 }
 
-function checkWorking(data) {
-	console.log('Well, the callback function ran at least');
-	console.log(data);
+function findImgSrc(array) {
+	if (array === undefined) {
+		return undefined;
+	}
+	for (i=0; i < array.length; i++) {
+		imgSrc = array[i].pagemap.cse_image[0].src;
+		if (imgSrc !== undefined) {
+			return imgSrc;
+		}
+	}
+}
+
+function findImages(data) {
+	//get the pics
+	let imgAlt = data.items[0].title;
+	let imgSrc = undefined;
+	imgSrc = findImgSrc(data.items);
+	
+	//let imgSrc = srcExtractor(gLink);
+	postImages(imgAlt, imgSrc);
 }
