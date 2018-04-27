@@ -11,9 +11,8 @@ function clearSearch() {
 function readySearch() {
   $('.js-srch').submit(event => {
     event.preventDefault();
-    console.log('form was submitted');
+    console.log('search ran');
     const input = $(event.currentTarget).find('.js-input');
-    console.log(input);
     const query = input.val();
     console.log(query);
     langSelector(query);
@@ -22,8 +21,25 @@ function readySearch() {
   });
 }
 
+//optional feature that can be added later
+
+// function readyFastSearch() {
+// 	$('.js-fast-srch').submit(event => {
+//     		event.preventDefault();
+// 		console.log('fast search ran');
+// 		const input = $(event.currentTarget).find('.js-fast-input');
+//     		const query = input.val();
+// 		console.log(query);
+// 		console.log(USER_LANG + " " + FOREIGN_LANG);
+// 		getTranslationData(query, sortTranslationData, USER_LANG, FOREIGN_LANG);
+// 		getImageData(query, findImages, USER_LANG);
+//
+//   		loadTranslationPage();
+// 	});
+// }
+
 function readyApp() {
-  $('#start-btn').on('click', function() {
+  $('#start-btn, #js-reset').on('click', function() {
     loadMain();
   });
 }
@@ -39,10 +55,10 @@ function useCountryCode(langCode) {
 function langSelector(q){
 	//have this function run both getData functions
 	//each needs new arguments to account for the language(s)
-	let USER_LANG = document.querySelector('input[name="user-language"]:checked').value;
-	let FOREIGN_LANG = document.querySelector('input[name="foreign-language"]:checked').value;
+	USER_LANG = document.querySelector('input[name="user-language"]:checked').value;
+	FOREIGN_LANG = document.querySelector('input[name="foreign-language"]:checked').value;
 
-  getTranslationData(q, sortTranslationData, USER_LANG, FOREIGN_LANG);
+  	getTranslationData(q, sortTranslationData, USER_LANG, FOREIGN_LANG);
 	USER_LANG = useCountryCode(USER_LANG);
 	getImageData(q, findImages, USER_LANG);
 
@@ -179,6 +195,9 @@ function loadForm() {
 }
 
 function loadTranslationPage() {
+
+  //fastTranslate feature to be added later
+
   $('main').html(`
     <div class="col-12 word-place"></div>
     <br>
@@ -192,12 +211,12 @@ function loadTranslationPage() {
     </div>
     <div class="col-4">
       <h3>Translate another word! (same languages)</h3>
-      <form action="#" name="trans-form" class="js-srch">
-        <label for="query"></label>
-        <input type="text" class="js-input" placeholder="e.g. 'Apple'">
+      <form action="#" name="trans-form" class="js-fast-srch">
+        <!--<label for="query"></label>
+        <input type="text" class="js-fast-input" placeholder="e.g. 'Apple'">
         <button type="submit">Fast Translate!</button>
 
-        <p>or</p>
+        <p>or</p>-->
 
         <label for="reset"></label>
         <button type="submit" id="js-reset">Start over</button>
@@ -205,35 +224,12 @@ function loadTranslationPage() {
       <br>
     </div>
     `);
-    readyReset();
-    readySearch();
-}
-
-function readyNewTransation() {
-  $('main').html(``);
+    //readyFastSearch();
+	readyApp();
 }
 
 // function loadAppMobile() {
-//   $('main').html(`
-//     <div class="slider">
-//       <div class="slide red">1</div>
-//       <div class="slide blue">2</div>
-//       <div class="slide orange">3</div>
-//       <div class="slide black">4</div>
-//     </div>
 //
-//     <div class="col-12 word-place"></div>
-//     <br>
-//     <div class="col-5 image-place-original"></div>
-//
-//     <div class="col-2 empty-space"><p></p></div>
-//
-//     <div class="col-5 image-place-new"></div>
-//   `);
 // }
 
 $(readyApp);
-
-// $('.lang-picker').slick({
-//   arrows: false
-// });
