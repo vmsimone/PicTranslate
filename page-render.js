@@ -210,7 +210,7 @@ function loadTranslationPage() {
       <p></p>
     </div>
     <div class="col-4">
-      <h3>Translate another word! (same languages)</h3>
+      <!--<h3>Translate another word! (same languages)</h3>-->
       <form action="#" name="trans-form" class="js-fast-srch">
         <!--<label for="query"></label>
         <input type="text" class="js-fast-input" placeholder="e.g. 'Apple'">
