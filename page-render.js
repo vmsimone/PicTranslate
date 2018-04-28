@@ -209,22 +209,16 @@ function loadTranslationPage() {
     <div class="col-12 word-place"></div>
     <br>
     <div class="row">
-    <div class="card">
       <div class="col-5 image-place-original"></div>
-    </div>
-    <div class="card">
       <div class="col-2 empty-space"><p></p></div>
-    </div>
-    <div class="card">
       <div class="col-5 image-place-new"></div>
-    </div>
     </div>
     <br>
     <div class="row">
       <div class="col-4 empty-space">
         <p></p>
       </div>
-
+      
       <div class="col-4 reset">
         <form action="#" name="trans-form" class="js-restart">
           <label for="reset"></label>

@@ -12,16 +12,24 @@ function sortTranslationData(data){
 	let translation = data[0][0][0];
 	console.log(userWord + " = " + translation);
 	$('.word-place').append(`
+
 		<div class="col-5">
-			<h3>${userWord}</h3>
+			<div class="card">
+				<h3>${userWord}</h3>
+			</div>
 		</div>
 		<div class="col-2">
-			<p>translates to</p>
+			<div class="card">
+				<p><span>translates to</span></p>
+			</div>
 		</div>
 		<div class="col-5">
-			<h3>${translation}</h3>
-		</div>`
-	);
+			<div class="card">
+				<h3>${translation}</h3>
+			</div>
+		</div>
+
+		`);
 	getImageData(translation, findImages, FOREIGN_LANG);
 }
 
