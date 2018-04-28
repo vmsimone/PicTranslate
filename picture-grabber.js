@@ -48,11 +48,11 @@ function postImages(alt, src) {
 }
 
 function findImgSrc(array) {
-	if (array === undefined) {
-		return undefined;
-	}
 	for (i=0; i < array.length; i++) {
-		imgSrc = array[i].pagemap.cse_image[0].src;
+		console.log(imgSrc = array[i].pagemap.cse_image);
+		if (array[i].pagemap.cse_image) {
+			imgSrc = array[i].pagemap.cse_image[0].src;
+		}
 		if (imgSrc !== undefined) {
 			return imgSrc;
 		}
@@ -64,7 +64,7 @@ function findImages(data) {
 	let imgAlt = data.items[0].title;
 	let imgSrc = undefined;
 	imgSrc = findImgSrc(data.items);
-	
+
 	//let imgSrc = srcExtractor(gLink);
 	postImages(imgAlt, imgSrc);
 }
