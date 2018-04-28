@@ -1,3 +1,4 @@
+//Google API globals
 const KEY = "AIzaSyD8zWKL40wAK4H694xGTGB7OyoluvILxV4";
 const SEARCH_ID = "016997435643568742287:j2dl6nqzf9c";
 const GIMAGE_SRCH = "https://www.googleapis.com/customsearch/v1";
@@ -6,7 +7,6 @@ const GIMAGE_SRCH = "https://www.googleapis.com/customsearch/v1";
 let firstImagePost = true;
 
 function getImageData(searchTerm, callbackFunc, countryPref){
-	console.log(countryPref);
 	const settings = {
     url: GIMAGE_SRCH,
     data: {
@@ -21,7 +21,6 @@ function getImageData(searchTerm, callbackFunc, countryPref){
     type: 'GET',
     success: callbackFunc
   };
-
 	$.ajax(settings);
 }
 
@@ -30,7 +29,7 @@ function postImages(alt, src) {
 	if (src === undefined) {
 		src = "https://www.absolutefencinggear.com/shopping/images/Not_available.jpg";
 	}
-	console.log('images posting');
+
 	let pictureResult = `
 		<div class="visual-aid">
 			<a href="#">
@@ -49,7 +48,7 @@ function postImages(alt, src) {
 
 function findImgSrc(array) {
 	for (i=0; i < array.length; i++) {
-		console.log(imgSrc = array[i].pagemap.cse_image);
+		//all potential images should be located in this array from the custom search
 		if (array[i].pagemap.cse_image) {
 			imgSrc = array[i].pagemap.cse_image[0].src;
 		}
@@ -64,7 +63,5 @@ function findImages(data) {
 	let imgAlt = data.items[0].title;
 	let imgSrc = undefined;
 	imgSrc = findImgSrc(data.items);
-
-	//let imgSrc = srcExtractor(gLink);
 	postImages(imgAlt, imgSrc);
 }
