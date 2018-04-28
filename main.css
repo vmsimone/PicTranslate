@@ -1,3 +1,9 @@
+header {
+	font-size: 32px;
+	color: #00FF66;
+	font-family: cursive;
+}
+
 body {
 	text-align: center;
 	font-family: sans-serif;
@@ -119,6 +125,10 @@ ul {
   list-style-type: none;
 }
 
+footer {
+	visibility: hidden;
+}
+
 @media only screen and (min-width: 640px) {
 	.lang-picker img {
 		height: 70px;
@@ -128,5 +138,13 @@ ul {
 	.container form {
 		width: 310px;
 		max-width: 90%;
+	}
+
+	footer {
+		visibility: visible;
+		bottom: 0;
+		margin-left: 10px;
+		position: absolute;
+		font-size: 12px;
 	}
 }
