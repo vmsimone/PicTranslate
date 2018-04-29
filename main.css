@@ -1,7 +1,10 @@
 header {
 	font-size: 32px;
-	color: white;
-	font-family: cursive;
+	color: #000099;
+	background-color: white;
+	font-family: sans-serif;
+	padding: 10px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 
 body {
